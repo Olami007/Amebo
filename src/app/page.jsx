@@ -5,7 +5,7 @@ export default function Home() {
     <main className="lg:flex items-center justify-around text-center">
       <div className="px-10 lg:w-1/2">
         <h1 className="text-4xl text-center font-bold py-8">
-          What's happening?
+          What is happening?
         </h1>
         <p className="text-center font-bold text-xl pb-4">
           Join the Amebo train today.
