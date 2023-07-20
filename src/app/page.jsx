@@ -1,3 +1,4 @@
+import Button from "@/components/Button/Button";
 import Footer from "@/components/footer/Footer";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,12 +24,7 @@ export default function Home() {
             <p className="text-center font-bold text-xl pb-4">
               Join the Amebo train today.
             </p>
-            <div className="text-center">
-              <button className="rounded-full bg-white shadow text-black px-12 py-4">
-                <i className="fa-brands fa-google text-red-400 pr-1.5"></i> Sign
-                Up with Google
-              </button>
-            </div>
+            <Button />
             <p className="py-2">or</p>
 
             <button className="group px-16 py-4 relative  overflow-hidden rounded-full bg-blue-950 text-lg shadow">
@@ -37,7 +33,7 @@ export default function Home() {
                 Create account
               </span>
             </button>
-            <div>
+            <div className="pt-4">
               <small>
                 By signing up, you agree to the{" "}
                 <a className="text-blue-400" href="#">
