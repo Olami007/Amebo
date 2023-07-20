@@ -2,6 +2,7 @@ import React from "react";
 
 const TermsOfUse = () => {
   return (
+    /* eslint-disable */
     <div className=" p-6">
       <h1 className="text-3xl font-bold mb-4">TERMS OF USE</h1>
       <p>Last updated July 20, 2023</p>
