@@ -1,9 +1,31 @@
+"use client";
+
 import Button from "@/components/Button/Button";
 import Footer from "@/components/footer/Footer";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
+  const session = useSession();
+  const router = useRouter();
+
+  // console.log(session);
+
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      router.push("/feeds");
+    }
+  }, [session.status, router]);
+
+  if (session.status === "loading") {
+    return <p>Loading...</p>;
+  }
+  // if (session.status === "authenticated") {
+  //   router?.push("/feeds");
+  // }
+
   return (
     <>
       <main>
@@ -27,11 +49,19 @@ export default function Home() {
             <Button />
             <p className="py-2">or</p>
 
-            <button className="group px-16 py-4 relative  overflow-hidden rounded-full bg-blue-950 text-lg shadow">
+            {/* <button className="group px-16 py-4 relative  overflow-hidden rounded-full bg-blue-950 text-lg shadow">
               <div className="absolute inset-0 w-3 bg-amber-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
               <span className="relative text-black group-hover:text-white">
                 Create account
               </span>
+            </button> */}
+            <button
+              onClick={() => {
+                router.push("/auth/login");
+              }}
+              className="rounded-full shadow text-blue-400 px-8 py-3 border-slate-50 border-2"
+            >
+              Sign in with email/username
             </button>
             <div className="pt-4">
               <small>
@@ -50,11 +80,21 @@ export default function Home() {
               </small>
             </div>
             <div className="pt-10">
-              <h1 className="text-bold text-xl py-4">
-                Already have an account?
-              </h1>
-              <button className="rounded-full shadow text-blue-400 px-24 py-3 border-slate-50 border-2">
+              <h1 className="text-bold text-xl py-4">Dont have an account?</h1>
+              {/* <button className="rounded-full shadow text-blue-400 px-24 py-3 border-slate-50 border-2">
                 Sign in
+              </button> */}
+
+              <button
+                onClick={() => {
+                  router.push("/auth/register");
+                }}
+                className="group px-16 py-4 relative  overflow-hidden rounded-full bg-blue-950 text-lg shadow"
+              >
+                <div className="absolute inset-0 w-3 bg-amber-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                <span className="relative text-black group-hover:text-white">
+                  Create account
+                </span>
               </button>
             </div>
           </div>
