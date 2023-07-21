@@ -7,6 +7,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+/* eslint-disable */
+
 export default function Home() {
   const session = useSession();
   const router = useRouter();
@@ -41,7 +43,7 @@ export default function Home() {
         <div className="lg:flex items-center justify-around text-center">
           <div className="px-10 lg:w-1/2">
             <h1 className="text-3xl text-center font-bold py-8">
-              Whats happening?
+              What's happening?
             </h1>
             <p className="text-center font-bold text-xl pb-4">
               Join the Amebo train today.
@@ -80,7 +82,7 @@ export default function Home() {
               </small>
             </div>
             <div className="pt-10">
-              <h1 className="text-bold text-xl py-4">Dont have an account?</h1>
+              <h1 className="text-bold text-xl py-4">Don't have an account?</h1>
               {/* <button className="rounded-full shadow text-blue-400 px-24 py-3 border-slate-50 border-2">
                 Sign in
               </button> */}
@@ -109,7 +111,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
       <Footer />
     </>
   );

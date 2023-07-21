@@ -11,7 +11,7 @@ const handler = NextAuth({
 
   // To display error on the page
   pages: {
-    error: "/dashboard/login",
+    error: "/",
   },
 });
 
