@@ -69,7 +69,7 @@ const Register = () => {
                 data-name="Layer 1"
                 xmlns="http://www.w3.org/2000/svg"
                 width="100%"
-                height="auto"
+                height="500px"
                 viewBox="0 0 744.84799 747.07702"
               >
                 <path
@@ -285,7 +285,7 @@ const Register = () => {
                       </div>
                       <input
                         type="text"
-                        className="w-full -ml-10 pl-10 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        className="w-full -ml-10 pl-6 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="JohnS123"
                       />
                     </div>
@@ -363,6 +363,10 @@ const Register = () => {
                   </div>
                 </div>
               </form>
+              <div className="text-center">- OR -</div>
+              <div className="text-center text-blue-600">
+                <Link href="/">Login with an existing account</Link>
+              </div>
             </div>
           </div>
         </div>
