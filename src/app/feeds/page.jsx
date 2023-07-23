@@ -1,10 +1,11 @@
-"use client";
+// "use client";
 
 import Navbar from "@/components/Navbar/Navbar";
+import { CheckStatus } from "@/components/SessionStatus/Sess";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React from "react";
 
 async function getData() {
   const res = await fetch("http://localhost:3000/api/feeds", {
@@ -18,41 +19,56 @@ async function getData() {
   return data;
 }
 
-const checkStatus = () => {
-  const session = useSession();
-  const router = useRouter();
+// const checkStatus = () => {
+//   const session = useSession();
+//   const router = useRouter();
 
-  useEffect(() => {
-    console.log(session);
-    if (session.status === "unauthenticated") {
-      router.push("/");
-    }
-    if (session.status === "loading") {
-      return <p>Loading...</p>;
-    }
-  });
-};
+//   useEffect(() => {
+//     console.log(session);
+//     if (session.status === "unauthenticated") {
+//       router.push("/");
+//     }
+//     if (session.status === "loading") {
+//       return <p>Loading...</p>;
+//     }
+//   });
+// };
 
 const Feed = async () => {
-  checkStatus();
+  // checkStatus();
+
+  // const session = useSession();
+  // const router = useRouter();
+
+  // useEffect(() => {
+  // console.log(session);
+  // if (session.status === "unauthenticated") {
+  //   router.push("/");
+  // }
+  // if (session.status === "loading") {
+  //   return <p>Loading...</p>;
+  // }
+  // });
 
   const feeds = await getData();
   // console.log(feeds, "this is feeds");
 
   return (
     <>
-      <Navbar />
-      <div className="text-center py-4">Feed</div>
+      <CheckStatus>
+        <Navbar />
+        <div className="text-center py-4">Feed</div>
 
-      {feeds?.map((feed) => (
-        <div className=" p-8 border-y-2" key={feed?._id}>
-          {/* <h1>My Post</h1> */}
-          <h2>{feed?.content}</h2>
-        </div>
-      ))}
-      <Link className="fixed bottom-8 right-8 text-7xl" href="/feeds/compose">
-        +
-      </Link>
+        {feeds?.map((feed) => (
+          <div className=" p-8 border-y-2" key={feed?._id}>
+            {/* <h1>My Post</h1> */}
+            <h2>{feed?.content}</h2>
+          </div>
+        ))}
+        <Link className="fixed bottom-8 right-8 text-7xl" href="/feeds/compose">
+          +
+        </Link>
+      </CheckStatus>
     </>
   );
 };
