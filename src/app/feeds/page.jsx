@@ -33,11 +33,8 @@ const checkStatus = () => {
   });
 };
 
-// function addFeed() {
-//   console.log("Amebo added");
-// }
 const Feed = async () => {
-  // checkStatus();
+  checkStatus();
 
   const feeds = await getData();
   // console.log(feeds, "this is feeds");
