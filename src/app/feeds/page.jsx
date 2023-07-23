@@ -2,13 +2,13 @@
 
 import Navbar from "@/components/Navbar/Navbar";
 import { CheckStatus } from "@/components/SessionStatus/Sess";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import React from "react";
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/feeds", {
+  const res = await fetch(`${process.env.BASE_URL}/api/feeds`, {
     next: { revalidate: 10 },
   });
 
