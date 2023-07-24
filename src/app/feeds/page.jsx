@@ -8,9 +8,12 @@ import Link from "next/link";
 import React from "react";
 
 async function getData() {
-  const res = await fetch(`${process.env.BASE_URL}/api/feeds`, {
+  const res = await fetch(`https://amebo-one.vercel.app/api/feeds`, {
     next: { revalidate: 10 },
   });
+  // const res = await fetch(`${process.env.BASE_URL}/api/feeds`, {
+  //   next: { revalidate: 10 },
+  // });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

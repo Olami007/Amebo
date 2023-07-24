@@ -1,15 +1,29 @@
 "use client";
 
 import Navbar from "@/components/Navbar/Navbar";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Login = () => {
+  const session = useSession();
+  const router = useRouter();
+
+  if (session.status === "loading") {
+    return <p>Loading...</p>;
+  }
+  if (session.status === "authenticated") {
+    router?.push("/feeds");
+  }
+
   const handleClick = (e) => {
     e.preventDefault();
 
     const email = e.target[0].value;
     const password = e.target[1].value;
     console.log(email, password);
+
+    signIn("credentials", { email, password });
   };
 
   return (
