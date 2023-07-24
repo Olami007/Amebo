@@ -6,7 +6,13 @@ export const POST = async (req) => {
   const { username, firstName, lastName, email, password } = await req.json();
   await connect();
 
-  const newUser = new User({ username, firstName, lastName, email, password });
+  const newUser = new User({
+    username,
+    firstName,
+    lastName,
+    email,
+    password,
+  });
 
   try {
     await newUser.save();
