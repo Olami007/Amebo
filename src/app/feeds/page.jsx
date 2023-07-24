@@ -7,20 +7,20 @@ import Link from "next/link";
 // import { useRouter } from "next/navigation";
 import React from "react";
 
-// async function getData() {
-//   const res = await fetch(`${process.env.BASE_URL}/api/feeds`, {
-//     next: { revalidate: 10 },
-//   });
-//   // const res = await fetch(`${process.env.BASE_URL}/api/feeds`, {
-//   //   next: { revalidate: 10 },
-//   // });
+async function getData() {
+  const res = await fetch(`${process.env.BASE_URL}/api/feeds`, {
+    next: { revalidate: 10 },
+  });
+  // const res = await fetch(`${process.env.BASE_URL}/api/feeds`, {
+  //   next: { revalidate: 10 },
+  // });
 
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch data");
-//   }
-//   const data = await res.json();
-//   return data;
-// }
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  const data = await res.json();
+  return data;
+}
 
 // const checkStatus = () => {
 //   const session = useSession();
@@ -53,10 +53,10 @@ const Feed = async () => {
   // }
   // });
 
-  // const feeds = await getData();
-  const feeds = [
-    { id: 1234567890, content: "Its going to be fun out here 😋" },
-  ];
+  const feeds = await getData();
+  // const feeds = [
+  //   { id: 1234567890, content: "Its going to be fun out here 😋" },
+  // ];
   // console.log(feeds, "this is feeds");
 
   return (
