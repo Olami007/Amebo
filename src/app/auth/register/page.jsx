@@ -3,9 +3,12 @@
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Register = () => {
+  const router = useRouter();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const username = e.target[0].value;
@@ -13,19 +16,25 @@ const Register = () => {
     const lastName = e.target[2].value;
     const email = e.target[3].value;
     const password = e.target[4].value;
-    console.log(
-      username,
-      "username",
-      firstName,
-      "firstName",
-      lastName,
-      "lastName",
-      email,
-      "email",
-      password,
-      "password",
-      "User created"
-    );
+
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          firstName,
+          lastName,
+          email,
+          password,
+        }),
+      });
+
+      res.status === 201 &&
+        router.push("/auth/login?sucess='Account has been created");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -61,7 +70,7 @@ const Register = () => {
       {/* </div> */}
 
       <div className="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5">
-        <div className="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden">
+        <div className="bg-gray-900 text-white rounded-3xl shadow-xl w-full overflow-hidden">
           <div className="md:flex w-full">
             <div className="hidden md:block w-1/2 bg-indigo-500 py-10 px-10">
               <svg
@@ -270,7 +279,7 @@ const Register = () => {
             </div>
             <div className="w-full md:w-1/2 py-10 px-5 md:px-10">
               <div className="text-center mb-10">
-                <h1 className="font-bold text-3xl text-gray-900">REGISTER</h1>
+                <h1 className="font-bold text-3xl text-white">REGISTER</h1>
                 <p>Enter your information to register</p>
               </div>
               <form onSubmit={handleSubmit}>
@@ -285,7 +294,7 @@ const Register = () => {
                       </div>
                       <input
                         type="text"
-                        className="w-full -ml-10 pl-6 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        className="bg-gray-600 w-full -ml-10 pl-6 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="JohnS123"
                       />
                     </div>
@@ -300,7 +309,7 @@ const Register = () => {
                       </div>
                       <input
                         type="text"
-                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        className="bg-gray-600 w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="John"
                       />
                     </div>
@@ -315,7 +324,7 @@ const Register = () => {
                       </div>
                       <input
                         type="text"
-                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        className="bg-gray-600 w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="Smith"
                       />
                     </div>
@@ -332,7 +341,7 @@ const Register = () => {
                       </div>
                       <input
                         type="email"
-                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        className="bg-gray-600 w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="johnsmith@example.com"
                       />
                     </div>
@@ -349,7 +358,7 @@ const Register = () => {
                       </div>
                       <input
                         type="password"
-                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        className="bg-gray-600 w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="************"
                       />
                     </div>

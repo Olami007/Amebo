@@ -1,10 +1,12 @@
 import connect from "@/utils/db";
+import User from "@/models/User";
+import { NextResponse } from "next/server";
 
 export const POST = async (req) => {
-  const { email, password, name } = await req.json();
+  const { username, firstName, lastName, email, password } = await req.json();
   await connect();
 
-  const newUser = new User({ name, email, password });
+  const newUser = new User({ username, firstName, lastName, email, password });
 
   try {
     await newUser.save();
