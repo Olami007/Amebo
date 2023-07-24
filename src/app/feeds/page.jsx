@@ -54,6 +54,9 @@ const Feed = async () => {
   // });
 
   // const feeds = await getData();
+  const feeds = [
+    { id: 1234567890, content: "Its going to be fun out here 😋" },
+  ];
   // console.log(feeds, "this is feeds");
 
   return (
