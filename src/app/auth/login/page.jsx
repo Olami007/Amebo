@@ -19,11 +19,11 @@ const Login = () => {
   const handleClick = (e) => {
     e.preventDefault();
 
-    const email = e.target[0].value;
+    const emailUsername = e.target[0].value;
     const password = e.target[1].value;
-    console.log(email, password);
+    // console.log(emailUsername, password);
 
-    signIn("credentials", { email, password });
+    signIn("credentials", { emailUsername, password });
   };
 
   return (

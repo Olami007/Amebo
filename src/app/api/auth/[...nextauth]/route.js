@@ -18,9 +18,13 @@ const handler = NextAuth({
         await connect();
 
         try {
-          const user = await User.findOne({
-            email: credentials.email || credentials.username,
-          });
+          const user =
+            (await User.findOne({
+              email: credentials.emailUsername,
+            })) ||
+            (await User.findOne({
+              username: credentials.emailUsername,
+            }));
 
           // if (user) {
           //   // check password
