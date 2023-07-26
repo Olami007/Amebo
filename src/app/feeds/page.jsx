@@ -1,19 +1,12 @@
-// "use client";
-
 import Navbar from "@/components/Navbar/Navbar";
 import { CheckStatus } from "@/components/SessionStatus/Sess";
-// import { useSession } from "next-auth/react";
 import Link from "next/link";
-// import { useRouter } from "next/navigation";
 import React from "react";
 
 async function getData() {
   const res = await fetch(`${process.env.BASE_URL}/api/feeds`, {
     next: { revalidate: 10 },
   });
-  // const res = await fetch(`${process.env.BASE_URL}/api/feeds`, {
-  //   next: { revalidate: 10 },
-  // });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -21,21 +14,6 @@ async function getData() {
   const data = await res.json();
   return data;
 }
-
-// const checkStatus = () => {
-//   const session = useSession();
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     console.log(session);
-//     if (session.status === "unauthenticated") {
-//       router.push("/");
-//     }
-//     if (session.status === "loading") {
-//       return <p>Loading...</p>;
-//     }
-//   });
-// };
 
 const Feed = async () => {
   // checkStatus();
@@ -54,10 +32,6 @@ const Feed = async () => {
   // });
 
   const feeds = await getData();
-  // const feeds = [
-  //   { id: 1234567890, content: "Its going to be fun out here 😋" },
-  // ];
-  // console.log(feeds, "this is feeds");
 
   return (
     <>
