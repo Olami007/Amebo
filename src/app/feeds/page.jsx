@@ -1,3 +1,4 @@
+import { CreatedAt } from "@/components/CreatedAt/CreatedAt";
 import Navbar from "@/components/Navbar/Navbar";
 import { CheckStatus } from "@/components/SessionStatus/Sess";
 import Link from "next/link";
@@ -43,6 +44,7 @@ const Feed = async () => {
           <div className=" p-8 border-y-2" key={feed?._id}>
             {/* <h1>My Post</h1> */}
             <h2>{feed?.content}</h2>
+            <small className="mt-6">{CreatedAt(feed?.createdAt)}</small>
           </div>
         ))}
         <Link className="fixed bottom-8 right-8 text-7xl" href="/feeds/compose">
