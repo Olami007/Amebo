@@ -43,8 +43,16 @@ const Feed = async () => {
         {feeds?.map((feed) => (
           <div className=" p-8 border-y-2" key={feed?._id}>
             {/* <h1>My Post</h1> */}
-            <h2>{feed?.content}</h2>
-            <small className="mt-6">{CreatedAt(feed?.createdAt)}</small>
+            <div className="flex justify-between align-center">
+              <div>
+                <div className="pb-2">
+                  <span>{feed.author}</span>
+                  <span className="pl-4">{`@${feed.username}`}</span>
+                </div>
+                <h2>{feed?.content}</h2>
+              </div>
+              <small>{CreatedAt(feed?.createdAt)}</small>
+            </div>
           </div>
         ))}
         <Link className="fixed bottom-8 right-8 text-7xl" href="/feeds/compose">
