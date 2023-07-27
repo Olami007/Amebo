@@ -100,8 +100,12 @@ const handler = NextAuth({
       // console.log(token);
       return token;
     },
-    async session({ session, user, token }) {
+    async session({ session, user, token, profile }) {
+      // const oneUser = await User.findOne({ _id: token.sub });
+      // console.log(oneUser);
+      // console.log(session, "session", profile, "profile", token, "token");
       return session;
+      // return { ...session, ...oneUser };
     },
   },
 });
