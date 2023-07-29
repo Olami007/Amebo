@@ -1,11 +1,11 @@
 import { CreatedAt } from "@/components/CreatedAt/CreatedAt";
 import Navbar from "@/components/Navbar/Navbar";
-import { CheckStatus } from "@/components/SessionStatus/Sess";
+// import { CheckStatus } from "@/components/SessionStatus/Sess";
 import Link from "next/link";
 import React from "react";
 
 async function getData() {
-  const res = await fetch(`${process.env.BASE_URL}/api/feeds`, {
+  const res = await fetch(`${process.env.BASE_URL}/api/feed`, {
     next: { revalidate: 10 },
   });
 
@@ -33,32 +33,33 @@ const Feed = async () => {
   // });
 
   const feeds = await getData();
-
+  // const feeds = { _id: "3456789" };
+  console.log(feeds);
   return (
     <>
-      <CheckStatus>
-        <Navbar />
-        <div className="text-center py-4">Feed</div>
+      {/* <CheckStatus> */}
+      <Navbar />
+      <div className="text-center py-4">Feed</div>
 
-        {feeds?.map((feed) => (
-          <div className=" p-8 border-y-2" key={feed?._id}>
-            {/* <h1>My Post</h1> */}
-            <div className="flex justify-between align-center">
-              <div>
-                <div className="pb-2">
-                  <span>{feed.author}</span>
-                  <span className="pl-4">{`@${feed.username}`}</span>
-                </div>
-                <h2>{feed?.content}</h2>
+      {feeds?.map((feed) => (
+        <div className=" p-8 border-y-2" key={feed?._id}>
+          {/* <h1>My Post</h1> */}
+          <div className="flex justify-between align-center">
+            <div>
+              <div className="pb-2">
+                <span>{feed.userFirstName}</span>
+                <span className="pl-4">{`@${feed.userUsername}`}</span>
               </div>
-              <small>{CreatedAt(feed?.createdAt)}</small>
+              <h2>{feed?.content}</h2>
             </div>
+            <small>{CreatedAt(feed?.createdAt)}</small>
           </div>
-        ))}
-        <Link className="fixed bottom-8 right-8 text-7xl" href="/feeds/compose">
-          +
-        </Link>
-      </CheckStatus>
+        </div>
+      ))}
+      <Link className="fixed bottom-8 right-8 text-7xl" href="/feeds/compose">
+        +
+      </Link>
+      {/* </CheckStatus> */}
     </>
   );
 };
