@@ -96,7 +96,7 @@ const Page = () => {
     }
 
     try {
-      await fetch("/api/feeds", {
+      await fetch("/api/feed", {
         method: "POST",
         body: JSON.stringify({
           userId: session._doc._id,
