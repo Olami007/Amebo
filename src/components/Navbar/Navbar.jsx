@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <>
       <div className="flex justify-around items-center py-8 bg-blue-400">
-        <h1>AMEBO</h1>
+        <a href="/">AMEBO</a>
         <div>Navbar</div>{" "}
         {session.status === "authenticated" && (
           <button onClick={signOut}>Logout</button>
