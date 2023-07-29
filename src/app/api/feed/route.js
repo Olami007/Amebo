@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import connect from "@/utils/db";
-import Feed from "@/models/Feeds";
+import Feeds from "@/models/Feed";
 
 export const GET = async (req) => {
   try {
     await connect();
 
-    const Feeds = await Feed.find();
-    return new NextResponse(JSON.stringify(Feeds), { status: 200 });
+    const allFeeds = await Feeds.find();
+    return new NextResponse(JSON.stringify(allFeeds), { status: 200 });
   } catch (error) {
     return new NextResponse("Database error", { status: 500 });
   }
@@ -15,9 +15,8 @@ export const GET = async (req) => {
 
 export const POST = async (req) => {
   const body = await req.json();
-
-  const newPost = new Feed(body);
-
+  const newPost = new Feeds(body);
+  console.log(newPost);
   try {
     await connect();
 
@@ -25,6 +24,6 @@ export const POST = async (req) => {
 
     return new NextResponse("Feed has been created", { status: 201 });
   } catch (error) {
-    return new NextResponse("Database error", { status: 500 });
+    return new NextResponse(error, { status: 500 });
   }
 };
