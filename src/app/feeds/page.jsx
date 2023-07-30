@@ -1,6 +1,5 @@
 import { CreatedAt } from "@/components/CreatedAt/CreatedAt";
 import Navbar from "@/components/Navbar/Navbar";
-// import { CheckStatus } from "@/components/SessionStatus/Sess";
 import Link from "next/link";
 import React from "react";
 
@@ -17,21 +16,6 @@ async function getData() {
 }
 
 const Feed = async () => {
-  // checkStatus();
-
-  // const session = useSession();
-  // const router = useRouter();
-
-  // useEffect(() => {
-  // console.log(session);
-  // if (session.status === "unauthenticated") {
-  //   router.push("/");
-  // }
-  // if (session.status === "loading") {
-  //   return <p>Loading...</p>;
-  // }
-  // });
-
   const feeds = await getData();
   // const feeds = [{ _id: "3456789" }];
   return (

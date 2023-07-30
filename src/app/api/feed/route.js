@@ -6,7 +6,8 @@ export const GET = async (req) => {
   try {
     await connect();
 
-    const allFeeds = await Feeds.find();
+    // const allFeeds = await Feeds.find();
+    const allFeeds = await Feeds.find().sort({ createdAt: -1 }); // Sort in descending order of createdAt
     return new NextResponse(JSON.stringify(allFeeds), { status: 200 });
   } catch (error) {
     return new NextResponse("Database error", { status: 500 });

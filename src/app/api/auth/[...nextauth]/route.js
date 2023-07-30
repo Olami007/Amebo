@@ -105,6 +105,7 @@ const handler = NextAuth({
       // console.log(oneUser);
       // console.log(session, "session", profile, "profile", token, "token");
       // return session;
+      // return { ...session };
       return { ...session, ...oneUser };
     },
   },
