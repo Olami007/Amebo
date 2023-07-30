@@ -101,7 +101,7 @@ const handler = NextAuth({
       return token;
     },
     async session({ session, user, token, profile }) {
-      console.log(token);
+      // console.log(token);
       const oneUser = await User.findOne({ email: token.email });
       // console.log(oneUser);
       // console.log(session, "session", profile, "profile", token, "token");
