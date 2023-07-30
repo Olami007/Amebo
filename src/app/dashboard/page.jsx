@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "@/components/Navbar/Navbar";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
@@ -31,6 +32,8 @@ const Page = () => {
 
   return (
     <div>
+      <Navbar />
+
       <h1 className="text-center py-8">DASHBOARD</h1>
       <form className="pt-8">
         <div className="flex py-3 justify-around">
