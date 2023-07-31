@@ -17,7 +17,7 @@ async function getData() {
 
 const Feed = async () => {
   const feeds = await getData();
-  // const feeds = [{ _id: "3456789" }];
+
   return (
     <>
       {/* <CheckStatus> */}

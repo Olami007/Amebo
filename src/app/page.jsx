@@ -21,9 +21,9 @@ export default function Home() {
     }
   }, [session.status, router]);
 
-  if (session.status === "loading") {
-    return <p>Loading...</p>;
-  }
+  // if (session.status === "loading") {
+  //   return <p>Loading...</p>;
+  // }
   // if (session.status === "authenticated") {
   //   router?.push("/feeds");
   // }
