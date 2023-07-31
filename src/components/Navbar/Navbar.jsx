@@ -9,7 +9,7 @@ const Navbar = () => {
     <>
       <div className="flex justify-around items-center py-8 bg-blue-400">
         <a href="/">AMEBO</a>
-        <div>Navbar</div>{" "}
+        {/* <div>Navbar</div>{" "} */}
         {session.status === "authenticated" && (
           <a href="/dashboard">Dashboard</a>
         )}
