@@ -37,6 +37,9 @@ const Feed = async () => {
             </div>
             <small>{CreatedAt(feed?.createdAt)}</small>
           </div>
+          <div>
+            <i className="fa-solid fa-heart pt-4 pb-0 pl-10"></i>
+          </div>
         </div>
       ))}
       <Link className="fixed bottom-8 right-8 text-7xl" href="/feeds/compose">
