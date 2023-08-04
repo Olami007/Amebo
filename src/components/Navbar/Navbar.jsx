@@ -11,7 +11,10 @@ const Navbar = () => {
         <a href="/">AMEBO</a>
         {/* <div>Navbar</div>{" "} */}
         {session.status === "authenticated" && (
-          <a href="/dashboard">Dashboard</a>
+          <>
+            <a href="/dashboard/profile">Profile</a>
+            <a href="/dashboard/posts">Post</a>
+          </>
         )}
         {session.status === "authenticated" && (
           <button onClick={signOut}>Logout</button>
