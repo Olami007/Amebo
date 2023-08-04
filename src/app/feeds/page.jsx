@@ -1,5 +1,7 @@
 import { CreatedAt } from "@/components/CreatedAt/CreatedAt";
+import LikeButton from "@/components/LikeButton/LikeButton";
 import Navbar from "@/components/Navbar/Navbar";
+import RetweetButton from "@/components/RetweetButton/RetweetButton";
 import Link from "next/link";
 import React from "react";
 
@@ -26,20 +28,23 @@ const Feed = async () => {
 
       {feeds?.map((feed) => (
         <div className=" p-8 border-y-2" key={feed?._id}>
-          {/* <h1>My Post</h1> */}
-          <div className="flex justify-between align-center">
-            <div>
-              <div className="pb-2">
-                <span>{feed.userFirstName}</span>
-                <span className="pl-4">{`@${feed.userUsername}`}</span>
+          <Link href={`/feeds/${feed._id}`}>
+            <div className="flex justify-between align-center">
+              <div>
+                <div className="pb-2">
+                  <span>{feed.userFirstName}</span>
+                  <span className="pl-4">{`@${feed.userUsername}`}</span>
+                </div>
+                <h2>{feed?.content}</h2>
               </div>
-              <h2>{feed?.content}</h2>
+              <small>{CreatedAt(feed?.createdAt)}</small>
             </div>
-            <small>{CreatedAt(feed?.createdAt)}</small>
-          </div>
-          <div>
-            <i className="fa-solid fa-heart pt-4 pb-0 pl-10"></i>
-          </div>
+          </Link>
+          <span className="flex ">
+            {" "}
+            <LikeButton />
+            <RetweetButton />
+          </span>
         </div>
       ))}
       <Link className="fixed bottom-8 right-8 text-7xl" href="/feeds/compose">
