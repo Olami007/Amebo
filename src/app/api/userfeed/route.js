@@ -1,15 +1,16 @@
 import { NextResponse } from "next/server";
 import connect from "@/utils/db";
 import Feeds from "@/models/Feed";
-import { useSession } from "next-auth/react";
-// import { getLoggedInUserDetails } from "@/utils/getLoggedInUserDetails";
 
 export const GET = async (req) => {
-  // getLoggedInUserDetails();
+  const url = new URL(req.url);
+
+  const username = url.searchParams.get("username");
+  // console.log(username, "here i am");
   try {
     await connect();
 
-    const allFeeds = await Feeds.find({ userUsername: "john" });
+    const allFeeds = await Feeds.find({ userUsername: username });
 
     return new NextResponse(JSON.stringify(allFeeds), { status: 200 });
   } catch (error) {
