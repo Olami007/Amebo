@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-export const getLoggedInUserDetails = async () => {
+export const GetLoggedInUserDetails = async () => {
   const session = useSession();
 
   return session, "session";

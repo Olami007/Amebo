@@ -8,9 +8,8 @@ import { useSession } from "next-auth/react";
 import React from "react";
 import useSWR from "swr";
 
-const page = () => {
+const Page = () => {
   const session = useSession();
-  console.log(session);
 
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -55,4 +54,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -34,7 +34,7 @@ import { useEffect } from "react";
 // return data;
 // };
 
-export const fetchUserFeeds = () => {
+export const FetchUserFeeds = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
