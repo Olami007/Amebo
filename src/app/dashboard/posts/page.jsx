@@ -4,7 +4,9 @@ import { CreatedAt } from "@/components/CreatedAt/CreatedAt";
 import LikeButton from "@/components/LikeButton/LikeButton";
 import Navbar from "@/components/Navbar/Navbar";
 import RetweetButton from "@/components/RetweetButton/RetweetButton";
+import Spinner from "@/components/Spinner";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import React from "react";
 import useSWR from "swr";
 
@@ -26,7 +28,7 @@ const Page = () => {
 
       <div>
         {isLoading ? (
-          <div className="text-center">loading</div>
+          <Spinner />
         ) : (
           data?.map((feed) => (
             <div className=" p-8 border-y-2" key={feed?._id}>
@@ -50,6 +52,9 @@ const Page = () => {
           ))
         )}
       </div>
+      <Link className="fixed bottom-8 right-8 text-7xl" href="/feeds/compose">
+        +
+      </Link>
     </>
   );
 };
