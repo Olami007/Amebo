@@ -1,27 +1,18 @@
 import { CreatedAt } from "@/components/CreatedAt/CreatedAt";
 import { getSingleData } from "@/components/FetchSingleData/FetchSingleData";
 import LikeButton from "@/components/LikeButton/LikeButton";
+import Navbar from "@/components/Navbar/Navbar";
 import RetweetButton from "@/components/RetweetButton/RetweetButton";
 import React from "react";
-
-// async function getSingleData(id) {
-//   const res = await fetch(`${process.env.BASE_URL}/api/feed/${id}`, {
-//     cache: "no-store",
-//   });
-
-//   if (!res.ok) {
-//     return notFound();
-//   }
-//   const data = await res.json();
-//   return data;
-// }
 
 const page = async ({ params }) => {
   const feed = await getSingleData(params.id);
 
   return (
     <>
-      <div>page</div>
+      <Navbar />
+
+      {/* <div>page</div> */}
       <div className=" p-8 border-y-2" key={feed?._id}>
         {/* <h1>My Post</h1> */}
         <div className="flex justify-between align-center">
