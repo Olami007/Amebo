@@ -17,7 +17,7 @@ export const GET = async (req) => {
 export const POST = async (req) => {
   const body = await req.json();
   const newPost = new Feeds(body);
-  console.log(newPost);
+  // console.log(newPost);
   try {
     await connect();
 

@@ -6,13 +6,20 @@ export const GET = async (req) => {
   const url = new URL(req.url);
 
   const username = url.searchParams.get("username");
-  // console.log(username, "here i am");
+
   try {
     await connect();
 
-    const allFeeds = await Feeds.find({ userUsername: username });
+    const allFeeds = await Feeds.find({ userUsername: username }).sort({
+      createdAt: -1,
+    });
 
-    return new NextResponse(JSON.stringify(allFeeds), { status: 200 });
+    return new NextResponse(JSON.stringify(allFeeds), {
+      status: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
   } catch (error) {
     return new NextResponse("Database error", { status: 500 });
   }
