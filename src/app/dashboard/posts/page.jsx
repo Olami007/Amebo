@@ -32,16 +32,20 @@ const Page = () => {
         ) : (
           data?.map((feed) => (
             <div className=" p-8 border-y-2" key={feed?._id}>
-              <div className="flex justify-between align-center">
-                <div>
-                  <div className="pb-2">
-                    <span>{feed.userFirstName}</span>
-                    <span className="pl-4">{`@${feed.userUsername}`}</span>
+              <Link href={`/feeds/${feed._id}`}>
+                <div className="flex justify-between align-center">
+                  <div>
+                    <div className="pb-2">
+                      <Link href={`/userfeeds/${feed.userUsername}`}>
+                        <span>{feed.userFirstName}</span>
+                        <span className="pl-4">{`@${feed.userUsername}`}</span>
+                      </Link>
+                    </div>
+                    <h2>{feed?.content}</h2>
                   </div>
-                  <h2>{feed?.content}</h2>
+                  <small>{CreatedAt(feed?.createdAt)}</small>
                 </div>
-                <small>{CreatedAt(feed?.createdAt)}</small>
-              </div>
+              </Link>
 
               <span className="flex ">
                 {" "}
