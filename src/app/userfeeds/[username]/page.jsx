@@ -7,7 +7,7 @@ import Link from "next/link";
 import useSWR from "swr";
 // import { useRouter } from "next/navigation";
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
   // const router = useRouter();
   const { username } = params;
 
@@ -59,4 +59,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default Page;
