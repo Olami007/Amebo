@@ -1,0 +1,28 @@
+.popUp {
+  background-color: red;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  top: -40%;
+  z-index: 6000;
+}
+
+.popUp.slideIn {
+  animation-name: slideInFromTop;
+  animation-duration: 9s;
+}
+
+@keyframes slideInFromTop {
+  0% {
+    top: -40%;
+  }
+  50% {
+    top: 0;
+  }
+  100% {
+    top: -40%;
+  }
+}
