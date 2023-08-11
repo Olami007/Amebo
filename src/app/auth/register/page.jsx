@@ -1,41 +1,40 @@
-"use client";
-
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import React from "react";
+import Form from "./Form";
 
 const Register = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const username = e.target[0].value;
-    const firstName = e.target[1].value;
-    const lastName = e.target[2].value;
-    const email = e.target[3].value;
-    const password = e.target[4].value;
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const username = e.target[0].value;
+  //   const firstName = e.target[1].value;
+  //   const lastName = e.target[2].value;
+  //   const email = e.target[3].value;
+  //   const password = e.target[4].value;
 
-    try {
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username,
-          firstName,
-          lastName,
-          email,
-          password,
-        }),
-      });
+  //   try {
+  //     const res = await fetch("/api/auth/register", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         username,
+  //         firstName,
+  //         lastName,
+  //         email,
+  //         password,
+  //       }),
+  //     });
 
-      res.status === 201 &&
-        router.push("/auth/login?sucess='Account has been created");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     res.status === 201 &&
+  //       router.push("/auth/login?sucess='Account has been created");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   return (
     <>
       <Navbar />
@@ -282,7 +281,7 @@ const Register = () => {
                 <h1 className="font-bold text-3xl text-white">REGISTER</h1>
                 <p>Enter your information to register</p>
               </div>
-              <form onSubmit={handleSubmit}>
+              {/* <form onSubmit={handleSubmit}>
                 <div className="flex -mx-3">
                   <div className="w-1/2 px-3 mb-5">
                     <label htmlFor="" className="text-xs font-semibold px-1">
@@ -371,7 +370,8 @@ const Register = () => {
                     </button>
                   </div>
                 </div>
-              </form>
+              </form> */}
+              <Form />
               <div className="text-center">- OR -</div>
               <div className="text-center text-blue-600">
                 <Link href="/">Login with an existing account</Link>
