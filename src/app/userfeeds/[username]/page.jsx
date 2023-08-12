@@ -1,43 +1,43 @@
-"use client";
-
 import { CreatedAt } from "@/components/CreatedAt/CreatedAt";
 import LikeButton from "@/components/LikeButton/LikeButton";
+import Navbar from "@/components/Navbar/Navbar";
 import RetweetButton from "@/components/RetweetButton/RetweetButton";
+import Footer from "@/components/footer/Footer";
 import Link from "next/link";
-import useSWR from "swr";
-// import { useRouter } from "next/navigation";
 
-const Page = ({ params }) => {
-  // const router = useRouter();
+const Page = async ({ params }) => {
   const { username } = params;
 
-  console.log(username);
-
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-  const { data: userPosts, error } = useSWR(
-    `/api/userfeed?username=${username}`,
-    fetcher
+  const res = await fetch(
+    `${process.env.BASE_URL}/api/userfeed?username=${username}`,
+    {
+      cache: "no-store",
+    }
   );
 
-  if (error) {
-    return <div>Error loading user posts.</div>;
+  if (!res.ok) {
+    return notFound();
   }
 
+  const data = await res.json();
+
+  console.log(data);
   return (
-    <div>
-      <h1>Posts by {username}</h1>
-      {userPosts ? (
-        userPosts?.map((feed) => (
+    <>
+      <Navbar />
+
+      <div>
+        <h1 className="text-center pb-4 pt-4">Posts by {username}</h1>
+        {data?.map((feed) => (
           <div className=" p-8 border-y-2" key={feed?._id}>
             <Link href={`/feeds/${feed._id}`}>
               <div className="flex justify-between align-center">
                 <div>
                   <div className="pb-2">
-                    <Link href={`/userfeeds/${feed.userUsername}`}>
-                      <span>{feed.userFirstName}</span>
-                      <span className="pl-4">{`@${feed.userUsername}`}</span>
-                    </Link>
+                    {/* <Link href={`/userfeeds/${feed.userUsername}`}> */}
+                    <span>{feed.userFirstName}</span>
+                    <span className="pl-4">{`@${feed.userUsername}`}</span>
+                    {/* </Link> */}
                   </div>
                   <h2>{feed?.content}</h2>
                 </div>
@@ -51,11 +51,11 @@ const Page = ({ params }) => {
               <RetweetButton />
             </span>
           </div>
-        ))
-      ) : (
-        <div>Loading user posts...</div>
-      )}
-    </div>
+        ))}
+      </div>
+
+      <Footer />
+    </>
   );
 };
 
