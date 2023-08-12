@@ -1,32 +1,20 @@
-"use client";
-
-import Button from "@/components/Button/Button";
+import Button from "@/components/Buttons/Button";
 import Footer from "@/components/footer/Footer";
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { handler } from "./api/auth/[...nextauth]/route";
+import SignInWithEmailButton from "@/components/Buttons/SignInWithEmailButton";
+import CreateAnAccountButton from "@/components/Buttons/CreateAnAccountButton";
+import { redirect } from "next/navigation";
 
 /* eslint-disable */
 
-export default function Home() {
-  const session = useSession();
-  const router = useRouter();
+export default async function Home() {
+  const session = await getServerSession(handler);
 
-  // console.log(session);
-
-  useEffect(() => {
-    if (session.status === "authenticated") {
-      router.push("/feeds");
-    }
-  }, [session.status, router]);
-
-  // if (session.status === "loading") {
-  //   return <p>Loading...</p>;
-  // }
-  // if (session.status === "authenticated") {
-  //   router?.push("/feeds");
-  // }
+  if (session.user) {
+    return redirect("/feeds");
+  }
 
   return (
     <>
@@ -51,20 +39,8 @@ export default function Home() {
             <Button />
             <p className="py-2">or</p>
 
-            {/* <button className="group px-16 py-4 relative  overflow-hidden rounded-full bg-blue-950 text-lg shadow">
-              <div className="absolute inset-0 w-3 bg-amber-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-              <span className="relative text-black group-hover:text-white">
-                Create account
-              </span>
-            </button> */}
-            <button
-              onClick={() => {
-                router.push("/auth/login");
-              }}
-              className="rounded-full shadow text-blue-400 px-8 py-3 border-slate-50 border-2"
-            >
-              Sign in with email/username
-            </button>
+            <SignInWithEmailButton />
+
             <div className="pt-4">
               <small>
                 By signing up, you agree to the{" "}
@@ -83,21 +59,8 @@ export default function Home() {
             </div>
             <div className="pt-10">
               <h1 className="text-bold text-xl py-4">Don't have an account?</h1>
-              {/* <button className="rounded-full shadow text-blue-400 px-24 py-3 border-slate-50 border-2">
-                Sign in
-              </button> */}
 
-              <button
-                onClick={() => {
-                  router.push("/auth/register");
-                }}
-                className="group px-16 py-4 relative  overflow-hidden rounded-full bg-blue-950 text-lg shadow"
-              >
-                <div className="absolute inset-0 w-3 bg-amber-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-                <span className="relative text-black group-hover:text-white">
-                  Create account
-                </span>
-              </button>
+              <CreateAnAccountButton />
             </div>
           </div>
           <div className="mx-auto">
@@ -111,6 +74,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+
       <Footer />
     </>
   );
