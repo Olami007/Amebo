@@ -12,9 +12,6 @@ export default function redirectToSignInIfNoToken(Component) {
       if (session.status === "unauthenticated") {
         router.push("/auth/login");
       }
-      //   if (session.status === "loading") {
-      //     router.push("/auth/login");
-      //   }
     }, [router, session]);
 
     return <Component {...props} />;
