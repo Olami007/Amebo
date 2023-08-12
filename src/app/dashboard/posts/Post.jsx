@@ -2,7 +2,7 @@
 
 import { CreatedAt } from "@/components/CreatedAt/CreatedAt";
 import LikeButton from "@/components/LikeButton/LikeButton";
-import Navbar from "@/components/Navbar/Navbar";
+// import Navbar from "@/components/Navbar/Navbar";
 import RetweetButton from "@/components/RetweetButton/RetweetButton";
 import Spinner from "@/components/Spinner";
 import { useSession } from "next-auth/react";
@@ -23,8 +23,8 @@ const Post = () => {
   console.log(data);
   return (
     <>
-      <Navbar />
-      <div className="text-center py-4">My Amebo Feeds</div>
+      {/* <Navbar />
+      <div className="text-center py-4">My Amebo Feeds</div> */}
 
       <div>
         {isLoading ? (
