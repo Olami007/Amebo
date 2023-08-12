@@ -1,9 +1,9 @@
-"use client";
+// "use client";
 
 import Navbar from "@/components/Navbar/Navbar";
 // import redirectToSignInIfNoToken from "@/utils/authCheck";
 import DashboardForm from "./Form";
-import redirectToSignInIfNoToken from "@/utils/authCheck";
+// import redirectToSignInIfNoToken from "@/utils/authCheck";
 // import { useSession } from "next-auth/react";
 // import React, { useEffect, useState } from "react";
 
@@ -106,4 +106,5 @@ const Page = () => {
   );
 };
 
-export default redirectToSignInIfNoToken(Page);
+export default Page;
+// export default redirectToSignInIfNoToken(Page);
