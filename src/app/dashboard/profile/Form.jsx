@@ -2,12 +2,13 @@
 
 import redirectToSignInIfNoToken from "@/utils/authCheck";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const DashboardForm = () => {
   redirectToSignInIfNoToken();
-  const { data: session } = useSession();
-  //   console.log(session);
+  const { data: session, status } = useSession();
+  // console.log(status);
 
   const [usernameValue, setUsernameValue] = useState("");
   const [firstNameValue, setfirstNameValue] = useState("");
@@ -16,6 +17,13 @@ const DashboardForm = () => {
   const [passwordValue, setPasswordValue] = useState("");
 
   const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const router = useRouter();
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/auth/login");
+    }
+  }, [router, session]);
 
   useEffect(() => {
     if (session?._doc) {
