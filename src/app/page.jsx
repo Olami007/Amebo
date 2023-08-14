@@ -7,8 +7,6 @@ import SignInWithEmailButton from "@/components/Buttons/SignInWithEmailButton";
 import CreateAnAccountButton from "@/components/Buttons/CreateAnAccountButton";
 import { redirect } from "next/navigation";
 
-/* eslint-disable */
-
 export default async function Home() {
   const session = await getServerSession(handler);
 
@@ -31,7 +29,7 @@ export default async function Home() {
         <div className="lg:flex items-center justify-around text-center">
           <div className="px-10 lg:w-1/2">
             <h1 className="text-3xl text-center font-bold py-8">
-              What's happening?
+              What is happening?
             </h1>
             <p className="text-center font-bold text-xl pb-4">
               Join the Amebo train today.
@@ -58,7 +56,9 @@ export default async function Home() {
               </small>
             </div>
             <div className="pt-10">
-              <h1 className="text-bold text-xl py-4">Don't have an account?</h1>
+              <h1 className="text-bold text-xl py-4">
+                Do not have an account?
+              </h1>
 
               <CreateAnAccountButton />
             </div>
