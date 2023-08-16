@@ -22,24 +22,27 @@ const Feed = async () => {
 
   return (
     <>
-      {/* <CheckStatus> */}
       <Navbar />
       <div className="text-center py-4">Feed</div>
 
       {feeds?.map((feed) => (
         <div className=" p-8 border-y-2" key={feed?._id}>
-          <Link href={`/feeds/${feed._id}`}>
-            <div className="flex justify-between align-center">
-              <div>
+          {/* <Link href={`/feeds/${feed._id}`}> */}
+          <div className="flex justify-between align-center">
+            <div>
+              <Link href={`/userfeeds/${feed.userUsername}`}>
                 <div className="pb-2">
                   <span>{feed.userFirstName}</span>
                   <span className="pl-4">{`@${feed.userUsername}`}</span>
                 </div>
+              </Link>
+              <Link href={`/feeds/${feed._id}`}>
                 <h2>{feed?.content}</h2>
-              </div>
-              <small>{CreatedAt(feed?.createdAt)}</small>
+              </Link>
             </div>
-          </Link>
+            <small>{CreatedAt(feed?.createdAt)}</small>
+          </div>
+          {/* </Link> */}
           <span className="flex ">
             {" "}
             <LikeButton />
@@ -50,7 +53,6 @@ const Feed = async () => {
       <Link className="fixed bottom-8 right-8 text-7xl" href="/feeds/compose">
         +
       </Link>
-      {/* </CheckStatus> */}
     </>
   );
 };
