@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 export default async function Home() {
   const session = await getServerSession(handler);
 
-  if (session.user) {
+  if (session?.user) {
     return redirect("/feeds");
   }
 
