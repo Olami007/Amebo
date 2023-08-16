@@ -33,20 +33,22 @@ const Post = () => {
       {data.length > 0 &&
         data.map((feed) => (
           <div className=" p-8 border-y-2" key={feed?._id}>
-            <Link href={`/feeds/${feed._id}`}>
-              <div className="flex justify-between align-center">
-                <div>
+            {/* <Link href={`/feeds/${feed._id}`}> */}
+            <div className="flex justify-between align-center">
+              <div>
+                <Link href={`/userfeeds/${feed.userUsername}`}>
                   <div className="pb-2">
-                    <Link href={`/userfeeds/${feed.userUsername}`}>
-                      <span>{feed.userFirstName}</span>
-                      <span className="pl-4">{`@${feed.userUsername}`}</span>
-                    </Link>
+                    <span>{feed.userFirstName}</span>
+                    <span className="pl-4">{`@${feed.userUsername}`}</span>
                   </div>
+                </Link>
+                <Link href={`/feeds/${feed._id}`}>
                   <h2>{feed?.content}</h2>
-                </div>
-                <small>{CreatedAt(feed?.createdAt)}</small>
+                </Link>
               </div>
-            </Link>
+              <small>{CreatedAt(feed?.createdAt)}</small>
+            </div>
+            {/* </Link> */}
 
             <span className="flex ">
               {" "}
